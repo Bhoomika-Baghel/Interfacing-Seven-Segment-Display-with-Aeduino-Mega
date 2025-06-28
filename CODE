@@ -1,0 +1,332 @@
+int seg_a = 12; // declare the variables
+int seg_b = 11;
+int seg_c = 10;
+int seg_d = 9;
+int seg_e = 8;
+int seg_f = 7;
+int seg_g = 6;
+int button =4;
+int led=3;
+void setup() 
+{
+  pinMode(seg_a,OUTPUT); // configure all pins used to outputs
+  pinMode(seg_b,OUTPUT);
+  pinMode(seg_c,OUTPUT);
+  pinMode(seg_d,OUTPUT);
+  pinMode(seg_e,OUTPUT);
+  pinMode(seg_f,OUTPUT);
+  pinMode(seg_g,OUTPUT);
+  pinMode(button, INPUT_PULLUP);
+  pinMode(led,OUTPUT);
+}
+void loop() 
+{ 
+  digitalWrite(3,HIGH);
+  delay(1000);
+  int buttons =digitalRead(button);
+  while (buttons==HIGH)
+  
+  {
+    for(int i=0; i<10; i++)
+    {
+      print_sev_seg(i);
+      delay(1000);
+    }
+    for(int i=9; i>=0; i--)
+    {
+      print_sev_seg(i);
+      delay(1000);
+    }
+  } 
+
+}
+
+
+void print_sev_seg(int data)
+{
+
+  if (data == 0)
+  {
+      digitalWrite(seg_a,HIGH);  //0
+      digitalWrite(seg_b,HIGH);
+      digitalWrite(seg_c,HIGH);
+      digitalWrite(seg_d,HIGH);
+      digitalWrite(seg_e,HIGH);
+      digitalWrite(seg_f,HIGH);
+      digitalWrite(seg_g,LOW);
+  }
+  else if (data == 1)
+  {
+    digitalWrite(seg_a,LOW);  //1
+    digitalWrite(seg_b,HIGH);
+    digitalWrite(seg_c,HIGH);
+    digitalWrite(seg_d,LOW);
+    digitalWrite(seg_e,LOW);
+    digitalWrite(seg_f,LOW);
+    digitalWrite(seg_g,LOW);
+  }
+  else if (data == 2 )
+  {
+    digitalWrite(seg_a,HIGH);  //2
+    digitalWrite(seg_b,HIGH);
+    digitalWrite(seg_c,LOW);
+    digitalWrite(seg_d,HIGH);
+    digitalWrite(seg_e,HIGH);
+    digitalWrite(seg_f,LOW);
+    digitalWrite(seg_g,HIGH);
+  }
+  else if (data == 3 )
+  {
+    digitalWrite(seg_a,HIGH);  //3
+    digitalWrite(seg_b,HIGH);
+    digitalWrite(seg_c,HIGH);
+    digitalWrite(seg_d,HIGH);
+    digitalWrite(seg_e,LOW);
+    digitalWrite(seg_f,LOW);
+    digitalWrite(seg_g,HIGH);
+  }
+  else if (data == 4 )
+  {
+    digitalWrite(seg_a,LOW);  //4
+    digitalWrite(seg_b,HIGH);
+    digitalWrite(seg_c,HIGH);
+    digitalWrite(seg_d,LOW);
+    digitalWrite(seg_e,LOW);
+    digitalWrite(seg_f,HIGH);
+    digitalWrite(seg_g,HIGH);
+  }
+  else if (data == 5 )
+  {
+    digitalWrite(seg_a,HIGH);  //5
+    digitalWrite(seg_b,LOW);
+    digitalWrite(seg_c,HIGH);
+    digitalWrite(seg_d,HIGH);
+    digitalWrite(seg_e,LOW);
+    digitalWrite(seg_f,HIGH);
+    digitalWrite(seg_g,HIGH);
+  }
+  else if (data == 6)
+  {
+    digitalWrite(seg_a,HIGH);  //6
+  digitalWrite(seg_b,LOW);
+  digitalWrite(seg_c,HIGH);
+  digitalWrite(seg_d,HIGH);
+  digitalWrite(seg_e,HIGH);
+  digitalWrite(seg_f,HIGH);
+  digitalWrite(seg_g,HIGH);
+  }
+  else if (data == 7)
+  {
+    digitalWrite(seg_a,HIGH);  //7
+  digitalWrite(seg_b,HIGH);
+  digitalWrite(seg_c,HIGH);
+  digitalWrite(seg_d,LOW);
+  digitalWrite(seg_e,LOW);
+  digitalWrite(seg_f,LOW);
+  digitalWrite(seg_g,LOW);
+  }
+  else if (data == 8)
+  {
+    digitalWrite(seg_a,HIGH);  //8
+  digitalWrite(seg_b,HIGH);
+  digitalWrite(seg_c,HIGH);
+  digitalWrite(seg_d,HIGH);
+  digitalWrite(seg_e,HIGH);
+  digitalWrite(seg_f,HIGH);
+  digitalWrite(seg_g,HIGH);
+  }
+  else if (data == 9)
+  {
+  digitalWrite(seg_a,HIGH);  //9
+  digitalWrite(seg_b,HIGH);
+  digitalWrite(seg_c,HIGH);
+  digitalWrite(seg_d,HIGH);
+  digitalWrite(seg_e,LOW);
+  digitalWrite(seg_f,HIGH);
+  digitalWrite(seg_g,HIGH);
+  }
+  
+
+
+
+}
+
+
+ChatGPT said:
+Great! Here's a complete GitHub repository setup for your Arduino project, including:
+
+✅ Repository Name Suggestion:
+Copy
+Edit
+seven-segment-counter-arduino
+✅ Repository Description (short for GitHub homepage):
+Arduino project to display a counting sequence (0–9 and reverse) on a 7-segment display using digital pins and a push button.
+
+✅ README.md Content:
+You can copy-paste this into your README.md file on GitHub:
+
+markdown
+Copy
+Edit
+# Seven Segment Counter using Arduino
+
+This project demonstrates how to use an Arduino to display numbers from 0 to 9 (and back) on a **7-segment display**. The sequence starts when a **push button** is released (using `INPUT_PULLUP` logic). An LED is also turned on during the counting process.
+
+---
+
+## 🧠 Features
+
+- Counts from 0 to 9 and then reverses (9 to 0)
+- Displays digits on a 7-segment display
+- Uses a push button to control the counting
+- LED indicator turns ON while counting
+
+---
+
+## 🔧 Components Required
+
+- Arduino Uno (or compatible board)
+- 1 × 7-Segment Display (Common Cathode)
+- 1 × Push Button
+- 1 × LED
+- 8 × 220Ω resistors (for segments + LED)
+- Jumper wires and breadboard
+
+---
+
+## 🛠️ Circuit Connections
+
+| Segment | Arduino Pin |
+|---------|-------------|
+| A       | 12          |
+| B       | 11          |
+| C       | 10          |
+| D       | 9           |
+| E       | 8           |
+| F       | 7           |
+| G       | 6           |
+| Button  | 4 (with INPUT_PULLUP) |
+| LED     | 3           |
+
+---
+
+## 🚀 How It Works
+
+- On power-up, the LED turns ON.
+- When the **button is not pressed** (logic HIGH due to pull-up), the display starts counting from 0 to 9 and back.
+- The digits are displayed on a 7-segment display with 1-second intervals.
+
+---
+
+## 🧾 Code Overview
+
+- `setup()`: Sets pin modes for segments, button, and LED.
+- `loop()`: Continuously checks the button state and triggers the counting logic.
+- `print_sev_seg()`: A custom function to display a digit on the 7-segment display.
+
+---
+
+## 💡 How to Upload
+
+1. Open Arduino IDE
+2. Select the correct board and COM port
+3. Copy the code from `seven_segment_counter.ino`
+4. Upload the code to your Arduino
+
+---
+
+## 📄 License
+
+This project is open-source under the [MIT License](LICENSE).
+
+---
+
+## 👤 Author
+
+**Your Name Here**  
+Feel free to fork, contribute, or raise issues if you'd like to enhance the project!
+Let me know if you'd like:
+
+A schematic diagram
+
+A version with Common Anode
+
+Enhancements like a buzzer or a display pause feature
+
+README in Hindi or Markdown with GIFs
+
+I can also guide you on how to upload this to GitHub if you need.
+
+
+
+
+
+
+
+
+You said:
+#include <LiquidCrystal.h>
+#include "DHT.h"
+
+LiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);
+/*
+  * RS = 12
+  * RW = GND
+  * EN = 10
+  * D4 = 5
+  * D5 = 4
+  * D6 = 3
+  * D7 = 2 
+*/
+
+#define POT A5
+#define STEP_SIZE 5/1024
+#define DHTPIN 8
+#define DHTTYPE DHT11
+
+DHT dht(DHTPIN, DHTTYPE);
+
+void setup() {
+  Serial.begin(9600);
+  lcd.begin(16,2);
+  dht.begin();
+
+}
+
+void loop() {
+  float pot_val = analogRead(POT);
+  Serial.print("POT_ADC_Value: ");
+  Serial.println(pot_val);
+  float pot_volt = pot_val * STEP_SIZE;
+  Serial.print("POT Voltage: ");
+  Serial.println(pot_volt);
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Pot Voltage: ");
+  lcd.setCursor(0,1);
+  lcd.print(pot_volt);
+  delay(1000);
+
+  float hum = dht.readHumidity();
+  float tem = dht.readTemperature();
+  Serial.print("Humidity: ");
+  Serial.println(hum);
+  Serial.print("Temperature:");
+  Serial.println(tem);
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Temperature");
+  lcd.setCursor(0,1);
+  lcd.print(tem);
+  delay(1000);
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Humidity");
+  lcd.setCursor(0,1);
+  lcd.print(hum);
+  delay(1000);
+  
+
+
+
+}  
